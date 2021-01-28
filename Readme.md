@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг»
 
 * Студент: [Елизавета Якубенко](https://up.htmlacademy.ru/javascript/22/user/1489861).
-* Наставник: `Неизвестно`.
+* Наставник: [Алёна Сиприкова](https://htmlacademy.ru/profile/asiprikova).
 
 ---
 
