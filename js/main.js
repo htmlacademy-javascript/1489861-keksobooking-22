@@ -1,7 +1,6 @@
 const getRandomNumber = function(min, max) {
   if (min < 0 || max <= min) {
-    console.error('Неверные значения')
-    return null;
+    throw new Error('Неверные данные')
   }
 
   return Math.random() * (max - min + 1) + min;
@@ -19,3 +18,6 @@ const getRandomFixed = function (min, max, fixedNumber) {
 
   return rand.toFixed(fixedNumber);
 }
+
+getRandomInteger(2, 9);
+getRandomFixed(2, 3, 4);
