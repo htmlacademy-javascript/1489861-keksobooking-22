@@ -1,3 +1,35 @@
+const OBJECT_COUNT = 10;
+
+const TYPE = ['palace', 'flat', 'house', 'bungalow'];
+
+const CHECKIN = ['12:00', '13:00', '14:00'];
+
+const CHECKOUT = ['12:00', '13:00', '14:00'];
+
+const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
+
+const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
+
+const Avatar = {
+  MIN: 1,
+  MAX: 8,
+};
+
+const Price = {
+  MIN: 1000,
+  MAX: 50000,
+};
+
+const Rooms = {
+  MIN: 1,
+  MAX: 5,
+};
+
+const Guests = {
+  MIN: 1,
+  MAX: 20,
+};
+
 const getRandomNumber = function(min, max) {
   if (min < 0 || max <= min) {
     throw new Error('Неверные данные')
@@ -19,48 +51,22 @@ const getRandomFixed = function (min, max, fixedNumber) {
   return rand.toFixed(fixedNumber);
 }
 
-getRandomInteger(2, 9);
-getRandomFixed(2, 3, 4);
-
 const getRandomArrayElement = (elements) => {
   return elements[getRandomInteger(0, elements.length - 1)];
 };
 
-const getNewArray = (array) => {
-  return array.slice(0, getRandomInteger(1, array.length - 1));
+const photoRandom = getRandomInteger(1, PHOTOS.length);
+const featureRandom = getRandomInteger(1, FEATURES.length);
+
+
+const getNewArray = (array, randomNumber) => {
+  const someArray = [];
+  for (let i = 0; i <= randomNumber; i++) {
+    someArray.push(getRandomArrayElement(array));
+  }
+  const newArray = new Set(someArray);
+  return newArray;
 };
-
-const OBJECT_COUNT = 10;
-
-const AVATAR = {
-  min: 1,
-  max: 8,
-};
-
-const PRICE = {
-  min: 1000,
-  max: 50000,
-};
-
-const ROOMS = {
-  min: 1,
-  max: 5,
-};
-
-const GUESTS = {
-  min: 1,
-  max: 20,
-};
-
-const TYPE = ['palace', 'flat', 'house', 'bungalow'];
-
-const CHECKIN = ['12:00', '13:00', '14:00'];
-
-const CHECKOUT = ['12:00', '13:00', '14:00'];
-
-const FEATURES = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
-
-const PHOTOS = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
 const createObject = () => {
   const pointX = getRandomFixed(35.65000, 35.70000, 5);
@@ -68,20 +74,20 @@ const createObject = () => {
 
   return {
     author: {
-      name: 'img/avatars/user' + getRandomInteger(AVATAR.min, AVATAR.max) + '.png',
+      name: 'img/avatars/user0' + getRandomInteger(Avatar.MIN, Avatar.MAX) + '.png',
     },
     offer: {
       title: 'Заголовок',
       address: pointX + ', ' + pointY,
-      price: getRandomInteger(PRICE.min, PRICE.max),
+      price: getRandomInteger(Price.MIN, Price.MAX),
       type: getRandomArrayElement(TYPE),
-      rooms: getRandomInteger(ROOMS.min, ROOMS.max),
-      guests: getRandomInteger(GUESTS.min, GUESTS.max),
+      rooms: getRandomInteger(Rooms.MIN, Rooms.MAX),
+      guests: getRandomInteger(Guests.MIN, Guests.MAX),
       checkin: getRandomArrayElement(CHECKIN),
       checkout: getRandomArrayElement(CHECKOUT),
-      features: getNewArray(FEATURES),
+      features: getNewArray(FEATURES, featureRandom),
       description: 'Описание',
-      photos: getNewArray(PHOTOS),
+      photos: getNewArray(PHOTOS, photoRandom),
     },
     location: {
       x: pointX,
