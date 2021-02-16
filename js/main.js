@@ -62,10 +62,10 @@ const featureRandom = getRandomInteger(1, FEATURES.length);
 const getNewArray = (array, randomNumber) => {
   const someArray = [];
   for (let i = 0; i <= randomNumber; i++) {
-    someArray.push(getRandomArrayElement(array));
+    someArray.push(array[i]);
   }
   const newArray = new Set(someArray);
-  return newArray;
+  return Array.from(newArray);
 };
 
 const createObject = () => {
