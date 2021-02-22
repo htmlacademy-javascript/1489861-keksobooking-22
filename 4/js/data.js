@@ -65,8 +65,12 @@ const createObject = () => {
   };
 };
 
-const similarObjects = new Array(OBJECT_COUNT).fill(null).map(() => createObject());
+const getSimilarObjects = () => {
+  const someArray = [];
+  for (let i = 0; i < OBJECT_COUNT; i++) {
+    someArray.push(createObject());
+  }
+  return someArray;
+}
 
-similarObjects;
-
-export { similarObjects };
+export { getSimilarObjects };

@@ -1,3 +1,5 @@
-import { similarObjects } from './data.js';
+import { getSimilarObjects } from './data.js';
 
-similarObjects;
+const similarObjects = getSimilarObjects;
+
+similarObjects();
