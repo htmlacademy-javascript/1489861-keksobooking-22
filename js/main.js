@@ -1,5 +1,5 @@
 import { getSimilarObjects } from './data.js';
 
-const similarObjects = getSimilarObjects;
+const similarObjects = getSimilarObjects();
 
-similarObjects();
+similarObjects;
