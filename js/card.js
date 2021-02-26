@@ -3,19 +3,36 @@ const cardTemplate = document.querySelector('#card').content;
 const popup = cardTemplate.querySelector('.popup');
 
 const renderCard = ({ author, offer }) => {
-  let type;
-  if (offer.type = 'palace') {
-    type = 'Дворец';
-  }
-  if (offer.type = 'flat') {
-    type = 'Квартира';
-  }
-  if (offer.type = 'house') {
-    type = 'Дом';
-  }
-  if (offer.type = 'bungalow') {
-    type = 'Бунгало';
-  }
+  // let type;
+  // if (offer.type = 'palace') {
+  //   type = 'Дворец';
+  // }
+  // if (offer.type = 'flat') {
+  //   type = 'Квартира';
+  // }
+  // if (offer.type = 'house') {
+  //   type = 'Дом';
+  // }
+  // if (offer.type = 'bungalow') {
+  //   type = 'Бунгало';
+  // }
+
+  const getOfferType = (types) => {
+    switch (types) {
+      case 'flat':
+        return 'Квартира';
+      case 'bungalow':
+        return 'Бунгало';
+      case 'house':
+        return 'Дом';
+      case 'palace':
+        return 'Дворец';
+      default:
+        return 'Любой тип жилья';
+    }
+  };
+
+  const offerType = getOfferType(offer.types);
 
   const card = popup.cloneNode(true);
   if (author.name) {
@@ -38,11 +55,7 @@ const renderCard = ({ author, offer }) => {
   } else {
     card.querySelector('.popup__text--price').classList.add('hidden');
   }
-  if (offer.type) {
-    card.querySelector('.popup__type').textContent = type;
-  } else {
-    card.querySelector('.popup__type').classList.add('hidden');
-  }
+  card.querySelector('.popup__type').textContent = offerType;
   if (offer.rooms && offer.guests) {
     card.querySelector('.popup__text--capacity').textContent = `${offer.rooms} комнаты для ${offer.guests} гостей`;
   } else {
