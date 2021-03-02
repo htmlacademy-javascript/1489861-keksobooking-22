@@ -33,8 +33,8 @@ const Guests = {
 };
 
 
-const photoRandom = getRandomInteger(1, PHOTOS.length);
-const featureRandom = getRandomInteger(1, FEATURES.length);
+const photoRandom = getRandomInteger(1, PHOTOS.length - 1);
+const featureRandom = getRandomInteger(1, FEATURES.length - 1);
 
 
 const createObject = () => {
