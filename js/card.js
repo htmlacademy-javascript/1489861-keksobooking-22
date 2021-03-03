@@ -2,7 +2,6 @@ const WIDTH = 45;
 const HEIGHT = 40;
 const cardTemplate = document.querySelector('#card').content;
 const popup = cardTemplate.querySelector('.popup');
-const typePlace = document.querySelector('#type');
 
 const getNewFeaturesList = (features) => {
   const similarListFragment = document.createDocumentFragment();
