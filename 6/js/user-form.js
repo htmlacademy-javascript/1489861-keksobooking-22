@@ -3,24 +3,36 @@ const price = document.querySelector('#price');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
 
+const PlaceTypes = {
+  BUNGALO: 'bungalow',
+  FLAT: 'flat',
+  HOUSE: 'house',
+  PALACE: 'palace',
+};
+
+const placeTypeMap = {
+  [PlaceTypes.BUNGALO]: {
+    PLACEHOLDER: '0',
+    PRICE_MIN: 0,
+  },
+  [PlaceTypes.FLAT]: {
+    PLACEHOLDER: '1000',
+    PRICE_MIN: 1000,
+  },
+  [PlaceTypes.HOUSE]: {
+    PLACEHOLDER: '5000',
+    PRICE_MIN: 5000,
+  },
+  [PlaceTypes.PALACE]: {
+    PLACEHOLDER: '10000',
+    PRICE_MIN: 10000,
+  },
+};
+
 typePlace.addEventListener('change', () => {
-  if (typePlace.value === 'bungalow') {
-    price.placeholder = '0';
-    price.min = 0;
-  }
-  if (typePlace.value === 'flat') {
-    price.placeholder = '1000';
-    price.min = 1000;
-  }
-  if (typePlace.value === 'house') {
-    price.placeholder = '5000';
-    price.min = 5000;
-  }
-  if (typePlace.value === 'palace') {
-    price.placeholder = '10000';
-    price.min = 10000;
-  }
-});
+  price.placeholder = placeTypeMap[typePlace.value].PLACEHOLDER;
+  price.min = placeTypeMap[typePlace.value].PRICE_MIN;
+})
 
 timeIn.addEventListener('change', () => {
   timeOut.value = timeIn.value;
