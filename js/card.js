@@ -1,23 +1,21 @@
-const cardTemplate = document.querySelector('#card').content;
-const popup = cardTemplate.querySelector('.popup');
-const similarListFragment = document.createDocumentFragment();
 const WIDTH = 45;
 const HEIGHT = 40;
+const cardTemplate = document.querySelector('#card').content;
+const popup = cardTemplate.querySelector('.popup');
 
 const getNewFeaturesList = (features) => {
-  similarListFragment;
+  const similarListFragment = document.createDocumentFragment();
   for (let i = 0; i < features.length; i++) {
     const newFeature = document.createElement('li');
-    newFeature.classList.add('popup__feature');
     const featureUniqueClass = `popup__feature--${features[i]}`;
-    newFeature.classList.add(featureUniqueClass);
+    newFeature.classList.add('popup__feature', featureUniqueClass);
     similarListFragment.appendChild(newFeature);
   }
   return similarListFragment;
 };
 
 const getNewPhotosList = (photos) => {
-  similarListFragment;
+  const similarListFragment = document.createDocumentFragment();
   for (let i = 0; i < photos.length; i++) {
     const newImage = new Image(WIDTH, HEIGHT);
     newImage.classList.add('popup__photo');

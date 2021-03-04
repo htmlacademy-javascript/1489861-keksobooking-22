@@ -1,5 +1,6 @@
 import { getSimilarObjects } from './data.js';
 import { renderCard } from './card.js';
+import './user-form.js';
 
 const similarObjects = getSimilarObjects();
 const [similarObjectFirstElement] = similarObjects;
