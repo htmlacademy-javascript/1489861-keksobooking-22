@@ -2,6 +2,7 @@ const typePlace = document.querySelector('#type');
 const price = document.querySelector('#price');
 const timeIn = document.querySelector('#timein');
 const timeOut = document.querySelector('#timeout');
+const address = document.querySelector('#address');
 
 const PlaceTypes = {
   BUNGALO: 'bungalow',
@@ -29,6 +30,10 @@ const placeTypeMap = {
   },
 };
 
+const setAddress = (x, y) => {
+  address.value = `${x}, ${y}`;
+};
+
 typePlace.addEventListener('change', () => {
   price.placeholder = placeTypeMap[typePlace.value].PLACEHOLDER;
   price.min = placeTypeMap[typePlace.value].PRICE_MIN;
@@ -41,3 +46,5 @@ timeIn.addEventListener('change', () => {
 timeOut.addEventListener('change', () => {
   timeIn.value = timeOut.value;
 });
+
+export { setAddress };

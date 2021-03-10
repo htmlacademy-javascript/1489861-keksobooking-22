@@ -1,6 +1,8 @@
 import { getSimilarObjects } from './data.js';
 import { renderCard } from './card.js';
 import './user-form.js';
+import { disabledForm, disabledFilter } from './map-disable.js';
+import { initMap } from './map.js';
 
 const similarObjects = getSimilarObjects();
 const [similarObjectFirstElement] = similarObjects;
@@ -10,4 +12,6 @@ const createCard = () => {
   list.appendChild(renderCard(similarObjectFirstElement));
 };
 
-createCard();
+disabledForm();
+disabledFilter();
+initMap();
