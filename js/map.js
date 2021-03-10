@@ -3,6 +3,8 @@ import { enabledForm, enabledFilter } from './map-disable.js';
 import { setAddress } from './user-form.js';
 import { getSimilarObjects } from './data.js';
 
+getSimilarObjects;   //Для проверки на гите
+
 const Coordinates = {
   width: 35.68950,
   longitude: 139.69171,
@@ -36,11 +38,11 @@ const mainPinIcon = L.icon({
   iconAnchor: [26, 52],
 });
 
-const pinIcon = L.icon({
-  iconUrl: './img/pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
-});
+// const pinIcon = L.icon({
+//   iconUrl: './img/pin.svg',
+//   iconSize: [52, 52],
+//   iconAnchor: [26, 52],
+// });
 
 const marker = L.marker(
   {

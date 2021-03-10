@@ -12,6 +12,8 @@ const createCard = () => {
   list.appendChild(renderCard(similarObjectFirstElement));
 };
 
+createCard; //Для проверки на гите
+
 disabledForm();
 disabledFilter();
 initMap();
