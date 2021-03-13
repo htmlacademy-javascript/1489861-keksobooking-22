@@ -1,27 +1,35 @@
 /* global L:readonly */
-import { enabledForm, enabledFilter } from './map-disable.js';
+import { activate } from './map-disable.js';
 import { setAddress } from './user-form.js';
 import { getSimilarObjects } from './data.js';
-
-getSimilarObjects;   //Для проверки на гите
+import { renderCard } from './card.js';
 
 const Coordinates = {
-  width: 35.68950,
-  longitude: 139.69171,
+  WIDTH: 35.68950,
+  LONGITUDE: 139.69171,
 };
 
-setAddress(Coordinates.width, Coordinates.longitude);
+const mainIconSize = {
+  WIDTH: 52,
+  HEIGHT: 52,
+};
+
+const iconSize = {
+  WIDTH: 52,
+  HEIGHT: 52,
+};
+
+setAddress(Coordinates.WIDTH, Coordinates.LONGITUDE);
 
 const map = L.map('map-canvas');
 
 const initMap = () => {
   map.on('load', () => {
-    enabledForm();
-    enabledFilter();
+    activate();
   })
   map.setView({
-    lat: Coordinates.width,
-    lng: Coordinates.longitude,
+    lat: Coordinates.WIDTH,
+    lng: Coordinates.LONGITUDE,
   }, 10);
 
   L.tileLayer(
@@ -34,20 +42,14 @@ const initMap = () => {
 
 const mainPinIcon = L.icon({
   iconUrl: './img/main-pin.svg',
-  iconSize: [52, 52],
-  iconAnchor: [26, 52],
+  iconSize: [mainIconSize.WIDTH, mainIconSize.HEIGHT],
+  iconAnchor: [mainIconSize.WIDTH/2, mainIconSize.HEIGHT],
 });
-
-// const pinIcon = L.icon({
-//   iconUrl: './img/pin.svg',
-//   iconSize: [52, 52],
-//   iconAnchor: [26, 52],
-// });
 
 const marker = L.marker(
   {
-    lat: Coordinates.width,
-    lng: Coordinates.longitude,
+    lat: Coordinates.WIDTH,
+    lng: Coordinates.LONGITUDE,
   },
   {
     draggable: true,
@@ -61,5 +63,35 @@ marker.on('moveend', (evt) => {
   setAddress(evt.target.getLatLng().lat.toFixed(5), evt.target.getLatLng().lng.toFixed(5));
 });
 
+const similarObjects = getSimilarObjects();
+
+similarObjects.forEach((point) => {
+  const {x:lat, y:lng} = point.location;
+
+  const pinIcon = L.icon({
+    iconUrl: './img/pin.svg',
+    iconSize: [iconSize.WIDTH, iconSize.HEIGHT],
+    iconAnchor: [iconSize.WIDTH/2, iconSize.HEIGHT],
+  });
+
+  const marker = L.marker(
+    {
+      lat,
+      lng,
+    },
+    {
+      pinIcon,
+    },
+  );
+
+  marker
+    .addTo(map)
+    .bindPopup(
+      renderCard(point),
+      {
+        keepInView: true,
+      },
+    );
+});
 
 export { initMap };
