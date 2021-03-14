@@ -26,7 +26,8 @@ const getNewPhotosList = (photos) => {
   return similarListFragment;
 };
 
-const renderCard = ({ author, offer }) => {
+const renderCard = (point) => {
+  const {author, offer} = point;
 
   const offerTypesMap = {
     'flat': 'Квартира',
